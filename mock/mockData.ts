@@ -88,6 +88,7 @@ function auth() {
   const stack = [...data];
   while (stack.length > 0) {
     const node = stack.shift();
+    if (!node) continue;
     node.id = uid;
     if (node.children && node.children.length > 0) {
       stack.unshift(...node.children);
@@ -212,7 +213,7 @@ function menuList() {
   };
 }
 
-const mockData = {
+const mockData: Record<string, any> = {
   "/login": login,
   "/auth": auth,
   "/userList": userList,
