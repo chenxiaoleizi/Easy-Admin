@@ -1,8 +1,8 @@
 import { type RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import staticRoutes from "./static";
 import dynamicRoutes from "./dynamic";
-import { useUserStore } from "@/store/user";
-import { usePermissionStore } from "@/store/permission";
+// import { useUserStore } from "@/store/user";
+// import { usePermissionStore } from "@/store/permission";
 import { message } from "ant-design-vue";
 
 const router = createRouter({
