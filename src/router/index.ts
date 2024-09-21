@@ -2,7 +2,7 @@ import { type RouteRecordRaw, createRouter, createWebHashHistory } from "vue-rou
 import staticRoutes from "./static";
 import dynamicRoutes from "./dynamic";
 // import { useUserStore } from "@/store/user";
-// import { usePermissionStore } from "@/store/permission";
+import { usePermissionStore } from "@/store/permission";
 import { message } from "ant-design-vue";
 
 const router = createRouter({
@@ -11,21 +11,21 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to) => {
-  return true;
   // const userStore = useUserStore();
-  // const permissionStore = usePermissionStore();
+  const permissionStore = usePermissionStore();
 
   // if (userStore.token) {
   //   // 初始化权限
-  //   if (!permissionStore.initialized) {
-  //     try {
-  //       await permissionStore.initPermission(router);
-  //     } catch {
-  //       message.error("加载权限信息出错");
-  //       userStore.token = "";
-  //       return "/login";
-  //     }
-  //   }
+  if (!permissionStore.initialized) {
+    try {
+      await permissionStore.initPermission(router);
+    } catch {
+      message.error("加载权限信息出错");
+      // userStore.token = "";
+      return "/login";
+    }
+  }
+  return true;
 
   //   // 已登录状态，自动跳转到登陆后的页面
   //   if (to.path === "/login") {

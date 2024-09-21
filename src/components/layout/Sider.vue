@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider v-model:collapsed="collapsed" class="side" theme="light">
+  <a-layout-sider v-model:collapsed="collapsed" class="side" theme="light" :width="256">
     <div class="logo">LOGO</div>
     <div class="menus">
       <a-menu
@@ -53,10 +53,10 @@ function setKeys() {
 setKeys();
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .side {
+  width: 256px;
   position: relative;
-  // border-right: 1px solid @colorBorder;
 }
 .logo {
   height: var(--header-height);

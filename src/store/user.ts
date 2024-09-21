@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { router } from "@/router/index";
+import router from "@/router/index";
 import { login } from "@/api/user";
 
 function setToken(token: string) {
@@ -13,7 +13,7 @@ function removeToken() {
 }
 
 export const useUserStore = defineStore("userStore", {
-  state(): UserStoreState {
+  state() {
     return {
       token: getToken() as string,
       username: "",

@@ -11,7 +11,7 @@ function matchPath(mockData, url) {
 export default function mockPlugin() {
   return {
     name: "mockPlugin",
-    // apply({ mode }) {
+    // apply(_config, { mode }) {
     //   return mode === "mock";
     // },
     configureServer(server: ViteDevServer) {
