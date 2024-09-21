@@ -6,14 +6,14 @@
     <div class="header-right">
       <span>{{}}</span>
       <a-divider type="vertical" />
-      <!-- <User></User> -->
+      <User></User>
     </div>
   </a-layout-header>
 </template>
 
 <script setup lang="ts">
 import Breadcrumb from "./Breadcrumb.vue";
-// import User from "./User.vue";
+import User from "./User.vue";
 // import { useClock } from "@/composables/index";
 
 // const clock = useClock();

@@ -3,8 +3,8 @@
     <a-layout style="height: 100%">
       <Sider></Sider>
       <a-layout>
-        <!-- <Header></Header> -->
-        <!-- <Content></Content> -->
+        <Header></Header>
+        <Content></Content>
       </a-layout>
     </a-layout>
   </div>
