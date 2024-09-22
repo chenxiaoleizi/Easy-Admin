@@ -1,14 +1,26 @@
 <template>
   <div>
+    <TableQuery>
+      <template #left>
+        <a-input v-model:value="queryForm.username" placeholder="请输入用户名"></a-input>
+        <a-input v-model:value="queryForm.account" placeholder="请输入账号"></a-input>
+        <a-button type="primary" @click="queryData">查询</a-button>
+      </template>
+      <template #right>
+        <a-button type="primary" @click="handleAdd">新增用户</a-button>
+      </template>
+    </TableQuery>
     <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
-          <a-button type="link">编辑</a-button>
+          <a-button type="link" @click="handleEdit(record)">编辑</a-button>
+          <a-divider type="vertical" />
           <a-button type="link" danger>删除</a-button>
         </template>
       </template>
     </a-table>
-    <!-- <Add v-model:open="open"></Add> -->
+    <AddUserModal ref="addUserModalRef"></AddUserModal>
+    <EditUserModal ref="editUserModalRef"></EditUserModal>
   </div>
 </template>
 
@@ -16,9 +28,9 @@
 import { reactive, ref } from "vue";
 import { useTablePagination } from "@/composables";
 import { getUserList } from "@/api/user";
-// import Add from "./components/Add.vue";
-
-// const open = ref(false);
+import TableQuery from "@/components/tableQuery/Index.vue";
+import AddUserModal from "./components/AddUserModal.vue";
+import EditUserModal from "./components/EditUserModal.vue";
 
 const columns = [
   {
@@ -60,7 +72,10 @@ const columns = [
   },
 ];
 
-const queryForm = reactive({});
+const queryForm = reactive({
+  username: "",
+  account: "",
+});
 const pagination = useTablePagination(fetchData);
 const dataSource = ref();
 function queryData() {
@@ -80,5 +95,26 @@ function fetchData() {
   });
 }
 
+const addUserModalRef = ref();
+const editUserModalRef = ref();
+function handleAdd() {
+  editUserModalRef.value.showModal();
+}
+function handleEdit(record: any) {
+  addUserModalRef.value.showModal();
+}
+
 fetchData();
 </script>
+
+<style scoped>
+.table-query {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.table-query-left {
+  display: flex;
+  max-width: 70%;
+}
+</style>

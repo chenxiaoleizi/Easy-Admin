@@ -36,7 +36,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
           title: "用户列表",
           icon: "users",
         },
-        component: () => import("@/views/system/user/UserList.vue"),
+        component: () => import("@/views/system/user/Index.vue"),
       },
       {
         path: "/system/roleList",
