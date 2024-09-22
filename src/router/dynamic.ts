@@ -20,6 +20,53 @@ const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: "/system",
+    name: "system",
+    meta: {
+      title: "系统设置",
+      icon: "settings",
+    },
+    component: Layout,
+    children: [
+      {
+        path: "/system/userList",
+        name: "userList",
+        meta: {
+          title: "用户列表",
+          icon: "users",
+        },
+        component: () => import("@/views/system/user/UserList.vue"),
+      },
+      {
+        path: "/system/roleList",
+        name: "roleList",
+        meta: {
+          title: "角色列表",
+          icon: "role",
+        },
+        component: () => import("@/views/system/role/RoleList.vue"),
+      },
+      {
+        path: "/system/menuList",
+        name: "menuList",
+        meta: {
+          title: "菜单列表",
+          icon: "menu",
+        },
+        component: () => import("@/views/system/menu/Index.vue"),
+      },
+      {
+        path: "/system/dict",
+        name: "dict",
+        meta: {
+          title: "字典管理",
+          icon: "menu",
+        },
+        component: () => import("@/views/system/dict/Index.vue"),
+      },
+    ],
+  },
 ];
 
 export default dynamicRoutes;

@@ -86,7 +86,7 @@ export const usePermissionStore = defineStore("permission", {
     async initPermission(router: Router) {
       // 请求权限数据
       const res = await getAuthData();
-      const data = res?.data ?? [];
+      const data = res ?? [];
 
       // 生成权限 map
       const map = createMap(data);

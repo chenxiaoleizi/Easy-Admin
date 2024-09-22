@@ -32,7 +32,7 @@ instance.interceptors.response.use(
       return Promise.reject(data.message);
     }
 
-    return data;
+    return data.data;
   },
   function (error) {
     return Promise.reject(error);

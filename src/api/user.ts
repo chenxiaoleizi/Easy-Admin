@@ -15,8 +15,8 @@ type UserListData = {
     state: number;
   }[];
 };
-export function getUserList(params: { [K: string]: any }) {
-  return http.get<UserListData>("/userList", params);
+export function getUserList() {
+  return http.get<UserListData>("/userList");
 }
 
 // 角色列表
