@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
+import { useTablePagination } from "@/composables";
 import { getUserList } from "@/api/user";
 // import Add from "./components/Add.vue";
 
@@ -60,17 +61,12 @@ const columns = [
 ];
 
 const queryForm = reactive({});
-const pagination = reactive({
-  current: 3,
-  pageSize: 10,
-  total: 100,
-});
+const pagination = useTablePagination(fetchData);
 const dataSource = ref();
 function queryData() {
   pagination.current = 1;
   fetchData();
 }
-function change() {}
 function fetchData() {
   const params = {
     ...queryForm,
@@ -80,6 +76,7 @@ function fetchData() {
   getUserList().then((res) => {
     const list = res?.list ?? [];
     dataSource.value = list;
+    pagination.total = 100;
   });
 }
 
