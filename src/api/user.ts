@@ -25,6 +25,6 @@ export function getRoleList(params) {
 }
 
 // 菜单列表
-export function getMenuList(params) {
-  return http.get("/menuList", params);
+export function getMenuList() {
+  return http.get("/menuList");
 }
