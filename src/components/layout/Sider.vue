@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider v-model:collapsed="collapsed" class="side" theme="light" :width="256">
+  <a-layout-sider v-model:collapsed="collapsed" class="side shadow-md" theme="light" :width="256">
     <div class="logo">LOGO</div>
     <div class="menus">
       <a-menu

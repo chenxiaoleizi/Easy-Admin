@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header class="header" style="background: white">
+  <a-layout-header class="header shadow-sm" style="background: white">
     <div class="header-left">
       <Breadcrumb></Breadcrumb>
     </div>
