@@ -98,10 +98,10 @@ function fetchData() {
 const addUserModalRef = ref();
 const editUserModalRef = ref();
 function handleAdd() {
-  editUserModalRef.value.showModal();
+  addUserModalRef.value.showModal();
 }
 function handleEdit(record: any) {
-  addUserModalRef.value.showModal();
+  editUserModalRef.value.showModal(record);
 }
 
 fetchData();

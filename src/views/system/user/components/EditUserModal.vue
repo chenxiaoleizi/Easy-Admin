@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 import UserForm from "./UserForm.vue";
+import { pick } from "lodash-es";
 
 const open = ref(false);
 const formState = reactive({
@@ -15,8 +16,9 @@ const formState = reactive({
   status: 1,
 });
 
-function showModal() {
+function showModal(record: any) {
   open.value = true;
+  Object.assign(formState, pick(record, ["username", "account", "status"]));
 }
 
 defineExpose({ showModal });
