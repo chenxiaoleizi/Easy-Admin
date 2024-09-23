@@ -3,7 +3,10 @@ function login() {
     code: 0,
     message: "",
     data: {
+      id: 1,
       username: "陈磊",
+      phone: 18356070599,
+      avatar: "",
       token: "O5XTTaRFHAu70mmXcX0EYLE7WrSKk5T2q030ed4KxgPgDKGiyvhxtyV8YQ1xSbD3",
     },
   };
