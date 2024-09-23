@@ -8,35 +8,6 @@ export const isExternal = (value: string) => {
 };
 
 /**
- * @description 校验密码是否小于6位
- * @param value
- * @returns {boolean}
- */
-export const isPassword = (value: string) => {
-  return value.length >= 6;
-};
-
-/**
- * @description 判断是否为数字
- * @param value
- * @returns {boolean}
- */
-export const isNumber = (value: string) => {
-  const reg = /^-?\d+(\.\d+)?$/;
-  return reg.test(value);
-};
-
-/**
- * @description 判断是否是名称
- * @param value
- * @returns {boolean}
- */
-export const isName = (value: string) => {
-  const reg = /^[\u4e00-\u9fa5a-zA-Z0-9]+$/;
-  return reg.test(value);
-};
-
-/**
  * @description 判断是否为IP
  * @param value
  * @returns {boolean}
@@ -88,34 +59,6 @@ export const isAlphabets = (value: string) => {
 };
 
 /**
- * @description 判断是否是字符串
- * @param value
- * @returns {boolean}
- */
-export const isString = (value: any) => {
-  return typeof value === "string" || value instanceof String;
-};
-
-/**
- * @description 判断是否是数组
- * @param value
- */
-export const isArray = (value: any) => {
-  if (typeof Array.isArray === "undefined") return Object.prototype.toString.call(value) === "[object Array]";
-  return Array.isArray(value);
-};
-
-/**
- * @description 判断是否是端口号
- * @param value
- * @returns {boolean}
- */
-export const isPort = (value: string) => {
-  const reg = /^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/;
-  return reg.test(value);
-};
-
-/**
  * @description 判断是否是手机号
  * @param value
  * @returns {boolean}
@@ -156,21 +99,13 @@ export const isChina = (value: string) => {
 };
 
 /**
- * @description 判断是否为空
- * @param value
- * @returns {boolean}
- */
-export const isBlank = (value: string) => {
-  return value === null || false || value === "" || value.trim() === "" || value.toLocaleLowerCase().trim() === "null";
-};
-
-/**
  * @description 判断是否为固话
  * @param value
  * @returns {boolean}
  */
 export const isTel = (value: string) => {
-  const reg = /^(400|800)([0-9\\-]{7,10})|(([0-9]{4}|[0-9]{3})([- ])?)?([0-9]{7,8})(([- 转])*([0-9]{1,4}))?$/;
+  const reg =
+    /^(400|800)([0-9\\-]{7,10})|(([0-9]{4}|[0-9]{3})([- ])?)?([0-9]{7,8})(([- 转])*([0-9]{1,4}))?$/;
   return reg.test(value);
 };
 
