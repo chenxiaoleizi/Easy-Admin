@@ -1,4 +1,4 @@
-import { ViteDevServer } from "vite";
+import type { Plugin, ViteDevServer } from "vite";
 import mockData from "./mockData";
 
 // 查找是否有匹配的 path
@@ -8,12 +8,12 @@ function matchPath(mockData: Record<string, any>, url: string) {
   return keys.find((item) => url.startsWith(item));
 }
 
-export default function mockPlugin() {
+export default function mock(): Plugin {
   return {
     name: "mockPlugin",
-    // apply(_config, { mode }) {
-    //   return mode === "mock";
-    // },
+    apply(_config, { mode }) {
+      return mode === "mock";
+    },
     configureServer(server: ViteDevServer) {
       server.middlewares.use((req, res, next) => {
         const { url } = req;

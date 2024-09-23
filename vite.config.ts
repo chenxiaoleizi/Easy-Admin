@@ -1,7 +1,7 @@
 import path from "node:path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import mockPlugin from "./mock/mockPlugin";
+import mock from "./mock/vitePluginMock";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,5 +10,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  plugins: [vue(), mockPlugin()],
+  plugins: [vue(), mock()],
 });
