@@ -35,7 +35,7 @@ export const useUserStore = defineStore("userStore", {
       const res = await login(params);
 
       // 登陆成功，保存 token，用户信息
-      const { token, username, avatar } = res.data;
+      const { token, username, avatar } = res;
       this.setToken(token);
       this.setUsername(username);
       this.setAvatar(avatar);
