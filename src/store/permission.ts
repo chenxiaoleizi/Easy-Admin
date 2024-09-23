@@ -4,24 +4,25 @@ import { useRoute, type Router } from "vue-router";
 import { getAuthData } from "@/api/router";
 
 const whiteList = ["/login", "/:pathMatch(.*)*"];
-type Permission = {
+type PermissionItem = {
   id: string;
   path: string;
   name: string;
   buttonPermissions?: string[];
-  children?: Permission[];
+  hide?: boolean;
+  children?: PermissionItem[];
 };
 
-function createMap(input: any[]) {
+function createMap(input: PermissionItem[]) {
   const map = new Map();
 
   const queue = [...input];
   while (queue.length > 0) {
     const node = queue.pop();
+    if (!node) continue;
+
     const { path } = node;
-    if (!map.has(path)) {
-      map.set(path, node);
-    }
+    if (!map.has(path)) map.set(path, node);
     if (node.children && node.children.length > 0) {
       queue.unshift(...node.children);
     }
@@ -29,7 +30,7 @@ function createMap(input: any[]) {
   return map;
 }
 
-function createMenuItems(input: any[]): any[] | null {
+function createMenuItems(input?: PermissionItem[]): any[] | null {
   if (!input) return null;
 
   input = input.filter((item) => !item.hide); // 过滤调不在菜单中显示的 menu
@@ -58,7 +59,7 @@ export const usePermissionStore = defineStore("permission", {
   state() {
     return {
       initialized: false,
-      permissionMap: new Map() as Map<string, Permission>,
+      permissionMap: new Map() as Map<string, PermissionItem>,
       menuItems: [] as any,
     };
   },
@@ -77,12 +78,16 @@ export const usePermissionStore = defineStore("permission", {
     },
   },
   actions: {
-    setPermissionMap(map: Map<string, Permission>) {
+    setPermissionMap(map: Map<string, PermissionItem>) {
       this.permissionMap = map;
     },
     setMenuItems(items: ItemType[]) {
       this.menuItems = items;
     },
+    /**
+     * @description 用来初始化权限，生成权限 map，左侧菜单，移除没有权限的路由
+     * @param router - 路由实例
+     */
     async initPermission(router: Router) {
       // 请求权限数据
       const res = await getAuthData();
