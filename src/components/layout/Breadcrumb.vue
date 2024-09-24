@@ -18,13 +18,13 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 const routes = computed(() => {
-  console.log(route.matched);
-  return route.matched.map((item) => {
-    return {
+  const matched = route.matched;
+  return matched
+    .filter((item) => !item.meta.hideInBreadcrumb)
+    .map((item) => ({
       path: item.path,
-      breadcrumbName: item.meta?.label,
-      key: item.name
-    };
-  });
+      breadcrumbName: item.meta?.title,
+      key: item.name,
+    }));
 });
 </script>

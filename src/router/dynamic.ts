@@ -15,6 +15,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
         meta: {
           title: "首页",
           icon: "home",
+          hideInBreadcrumb: true, // 用于面包屑过滤
         },
         component: () => import("@/views/home/Index.vue"),
       },
