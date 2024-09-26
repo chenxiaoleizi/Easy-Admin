@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import router from "@/router/index";
+import { message } from "ant-design-vue";
 import { login } from "@/api/user";
 
 function setToken(token: string) {
@@ -16,8 +17,10 @@ export const useUserStore = defineStore("userStore", {
   state() {
     return {
       token: getToken() as string,
-      username: "",
-      avatar: "",
+      userInfo: {
+        username: "",
+        avatar: "",
+      },
     };
   },
   actions: {
@@ -25,25 +28,25 @@ export const useUserStore = defineStore("userStore", {
       setToken(token);
       this.token = token;
     },
-    setUsername(username: string) {
-      this.username = username;
+    setUserInfo(userInfo: { username: string; avatar: string }) {
+      Object.assign(this.userInfo, userInfo);
     },
-    setAvatar(avatar: string) {
-      this.avatar = avatar;
-    },
+
     async login(params: any) {
       const res = await login(params);
 
       // 登陆成功，保存 token，用户信息
-      const { token, username, avatar } = res;
+      const { token } = res;
       this.setToken(token);
-      this.setUsername(username);
-      this.setAvatar(avatar);
+      this.setUserInfo(res);
+
+      await router.push("/");
+      message.success("登录成功");
     },
     logout() {
       this.token = "";
-      this.username = "";
-      this.avatar = "";
+      this.userInfo.username = "";
+      this.userInfo.avatar = "";
 
       removeToken();
 
