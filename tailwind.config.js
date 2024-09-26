@@ -9,6 +9,6 @@ export default {
   },
   plugins: [],
   corePlugins: {
-    preflight: false,
+    preflight: false, // https://tailwindcss.com/docs/preflight#disabling-preflight
   }
 }
