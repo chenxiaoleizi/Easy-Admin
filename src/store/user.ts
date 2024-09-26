@@ -24,6 +24,13 @@ export const useUserStore = defineStore("userStore", {
     };
   },
   actions: {
+    reset() {
+      this.token = "";
+      this.userInfo.username = "";
+      this.userInfo.avatar = "";
+
+      removeToken();
+    },
     setToken(token: string) {
       setToken(token);
       this.token = token;
@@ -43,14 +50,11 @@ export const useUserStore = defineStore("userStore", {
       await router.push("/");
       message.success("登录成功");
     },
-    logout() {
-      this.token = "";
-      this.userInfo.username = "";
-      this.userInfo.avatar = "";
+    async logout() {
+      this.reset();
 
-      removeToken();
-
-      router.push({ name: "login" });
+      await router.push({ name: "login" });
+      message.success("退出登录成功");
     },
   },
 });

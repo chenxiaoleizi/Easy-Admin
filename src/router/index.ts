@@ -1,4 +1,4 @@
-import { type RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import staticRoutes from "./static";
 import dynamicRoutes from "./dynamic";
 import { useUserStore } from "@/store/user";
@@ -21,7 +21,7 @@ router.beforeEach(async (to, from) => {
         await permissionStore.initPermission(router);
       } catch {
         message.error("加载权限信息出错");
-        // userStore.token = "";
+        userStore.reset();
         return "/login";
       }
     }
