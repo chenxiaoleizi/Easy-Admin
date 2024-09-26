@@ -10,7 +10,7 @@ const router = createRouter({
   history: createWebHashHistory(),
 });
 
-router.beforeEach(async (to) => {
+router.beforeEach(async (to, from) => {
   const userStore = useUserStore();
   const permissionStore = usePermissionStore();
 
@@ -26,11 +26,10 @@ router.beforeEach(async (to) => {
       }
     }
 
-    // 已登录状态，自动跳转到登陆后的页面
-    if (to.path === "/login") {
-      const firstMenu = permissionStore.firstMenu;
-      return firstMenu.path;
-    }
+    // 跳转的是非登录后的页面，或者从登录页跳转过来，需要跳转到第一个菜单对应的页面
+    const firstMenuPath = permissionStore.firstMenu.path;
+    if (to.path === "/login") return firstMenuPath;
+    if (from.path === "/login" && to.path !== firstMenuPath) return firstMenuPath;
 
     return true;
   } else {
