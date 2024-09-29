@@ -80,7 +80,17 @@ function auth() {
       children: [
         {
           path: "/components/table",
-          name: "表格",
+          name: "树",
+          id: 11,
+        },
+        {
+          path: "/components/tree",
+          name: "树",
+          id: 11,
+        },
+        {
+          path: "/components/upload",
+          name: "上传",
           id: 11,
         },
       ],

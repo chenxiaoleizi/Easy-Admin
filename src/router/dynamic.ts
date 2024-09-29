@@ -59,6 +59,40 @@ const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: "/components",
+    meta: {
+      title: "组件",
+      icon: "home",
+    },
+    component: Layout,
+    children: [
+      {
+        path: "/components/table",
+        meta: {
+          title: "表格",
+          icon: "home",
+        },
+        component: () => import("@/views/components/table/Index.vue"),
+      },
+      {
+        path: "/components/tree",
+        meta: {
+          title: "树",
+          icon: "home",
+        },
+        component: () => import("@/views/components/tree/Index.vue"),
+      },
+      {
+        path: "/components/upload",
+        meta: {
+          title: "上传",
+          icon: "home",
+        },
+        component: () => import("@/views/components/upload/Index.vue"),
+      },
+    ],
+  },
 ];
 
 export default dynamicRoutes;

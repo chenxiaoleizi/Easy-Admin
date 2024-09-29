@@ -1,0 +1,10 @@
+<template>
+  <div>
+    upload
+    <ul>
+      <li>自定义上传函数</li>
+      <li>手动上传</li>
+      <li>队列上传</li>
+    </ul>
+  </div>
+</template>
