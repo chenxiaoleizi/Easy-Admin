@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Normal></Normal>
+    <ul>
+      <li>选中节点的回显和获取</li>
+    </ul>
   </div>
 </template>
 
