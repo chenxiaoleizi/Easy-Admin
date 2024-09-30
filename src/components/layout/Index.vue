@@ -4,6 +4,7 @@
       <Sider></Sider>
       <a-layout>
         <Header></Header>
+        <Tab></Tab>
         <Content></Content>
       </a-layout>
     </a-layout>
@@ -13,6 +14,7 @@
 <script setup lang="ts">
 import Sider from "./Sider.vue";
 import Header from "./Header.vue";
+import Tab from "./Tab.vue";
 import Content from "./Content.vue";
 </script>
 
