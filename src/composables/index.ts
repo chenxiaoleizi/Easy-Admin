@@ -1,5 +1,5 @@
-import { ref, reactive, unref, computed, onUnmounted } from "vue";
-// import type { Ref, Reactive } from "vue";
+import { ref, reactive, onMounted, computed, onBeforeUnmount, onUnmounted, nextTick } from "vue";
+import type { Ref, Reactive } from "vue";
 import dayjs from "dayjs";
 // import { cloneDeep, isEqual } from "lodash-es";
 
@@ -54,6 +54,43 @@ export function useTablePagination(handleChange = () => {}, options = {}) {
   }
 
   return pagination;
+}
+
+export function useTableScroll(tableRef: Ref, onScroll: () => void) {
+  // 定义滚动函数
+  function handleScroll() {
+    const tableContainer = tableRef.value.$el.querySelector(".ant-table-body");
+    const scrollPosition = tableContainer.scrollTop;
+    const isTop = scrollPosition === 0;
+    const isBottom = tableContainer.scrollHeight - scrollPosition === tableContainer.clientHeight;
+    if (isTop) {
+      console.log("重新加载");
+    }
+    if (isBottom) {
+      console.log("加载更多");
+      onScroll();
+    }
+  }
+
+  // 添加scroll监听
+  onMounted(() => {
+    nextTick(() => {
+      if (tableRef.value) {
+        const tableContainer = tableRef.value.$el.querySelector(".ant-table-body");
+        tableContainer.addEventListener("scroll", handleScroll);
+      }
+    });
+  });
+
+  // 移除scroll监听
+  onBeforeUnmount(() => {
+    nextTick(() => {
+      if (tableRef.value) {
+        const tableContainer = tableRef.value.$el.querySelector(".ant-table-body");
+        tableContainer.removeEventListener("scroll", handleScroll);
+      }
+    });
+  });
 }
 
 // export function useIsChanged(target: Ref | Reactive<any>) {
