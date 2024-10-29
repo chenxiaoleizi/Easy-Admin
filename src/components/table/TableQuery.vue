@@ -2,10 +2,10 @@
   <div class="easy-table-query">
     <a-form ref="formRef" layout="inline" :model="queryFormState">
       <slot></slot>
-      <a-form-item name="username">
+      <a-form-item>
         <a-button @click="handleReset">重置</a-button>
       </a-form-item>
-      <a-form-item name="username">
+      <a-form-item>
         <a-button type="primary" @click="handleQuery">查询</a-button>
       </a-form-item>
     </a-form>
@@ -28,7 +28,7 @@ function handleQuery() {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .easy-table-query {
   min-height: 52px;
   display: flex;
@@ -37,8 +37,8 @@ function handleQuery() {
   background: white;
   border-bottom: 1px solid #d9dbde;
   padding: 10px 20px 0;
-  :deep(.ant-form-item) {
-    margin-bottom: 10px;
-  }
+}
+.easy-table-query :deep(.ant-form-item) {
+  margin-bottom: 10px;
 }
 </style>

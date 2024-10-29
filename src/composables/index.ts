@@ -38,7 +38,7 @@ export function useVModel(props: any, propName: string, emit: any) {
   return value;
 }
 
-export function useTablePagination(handleChange = () => {}, options = {}) {
+export function useTablePagination(handleChange: () => void, options = {}) {
   const pagination = reactive({
     current: 1,
     pageSize: 10,

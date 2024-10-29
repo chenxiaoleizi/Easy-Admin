@@ -1,14 +1,12 @@
 <template>
   <div>
-    <TableQuery>
-      <template #left>
+    <TableQuery :query-form-state="queryForm">
+      <a-form-item label="用户名" name="username">
         <a-input v-model:value="queryForm.username" placeholder="请输入用户名"></a-input>
+      </a-form-item>
+      <a-form-item label="账号" name="account">
         <a-input v-model:value="queryForm.account" placeholder="请输入账号"></a-input>
-        <a-button type="primary" @click="queryData">查询</a-button>
-      </template>
-      <template #right>
-        <a-button type="primary" @click="handleAdd">新增用户</a-button>
-      </template>
+      </a-form-item>
     </TableQuery>
     <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
       <template #bodyCell="{ column, record }">
@@ -26,9 +24,9 @@
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { useTablePagination } from "@/composables";
+import { useTablePagination } from "@/composables/index";
 import { getUserList } from "@/api/user";
-import TableQuery from "@/components/tableQuery/Index.vue";
+import TableQuery from "@/components/table/TableQuery.vue";
 import AddUserModal from "./components/AddUserModal.vue";
 import EditUserModal from "./components/EditUserModal.vue";
 

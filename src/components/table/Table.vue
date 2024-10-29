@@ -18,22 +18,22 @@ const attrs = useAttrs();
 withDefaults(defineProps<{ tableName?: string }>(), { tableName: "" });
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .easy-table {
   margin: 0 20px;
-  .easy-table-query {
-    min-height: 52px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    background: white;
-    border-bottom: 1px solid #d9dbde;
-  }
-  .easy-table-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+}
+.easy-table-query {
+  min-height: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background: white;
+  border-bottom: 1px solid #d9dbde;
+}
+.easy-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 :deep(.ant-table) {
   border-radius: 0;

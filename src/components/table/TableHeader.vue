@@ -9,17 +9,17 @@
   </div>
 </template>
 
-<style scoped lang="less">
+<style scoped>
 .easy-table-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 12px 20px 8px;
-  .l {
-    font-weight: 600;
-    font-size: 16px;
-    color: #000000;
-    line-height: 19px;
-  }
+}
+.l {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+  line-height: 19px;
 }
 </style>
