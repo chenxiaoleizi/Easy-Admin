@@ -39,15 +39,15 @@ const dynamicRoutes: RouteRecordRaw[] = [
         },
         component: () => import("@/views/system/user/Index.vue"),
       },
-      // {
-      //   path: "/system/roleList",
-      //   name: "roleList",
-      //   meta: {
-      //     title: "角色列表",
-      //     icon: "role",
-      //   },
-      //   component: () => import("@/views/system/role/RoleList.vue"),
-      // },
+      {
+        path: "/system/roleList",
+        name: "roleList",
+        meta: {
+          title: "角色列表",
+          icon: "role",
+        },
+        component: () => import("@/views/system/role/RoleList.vue"),
+      },
       {
         path: "/system/menuList",
         name: "menuList",
