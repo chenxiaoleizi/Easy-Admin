@@ -1,5 +1,10 @@
 <template>
-  <a-form :modal="formState" :label-col="{ style: { width: '80px' } }" :rules="rules">
+  <a-form
+    layout="vertical"
+    :modal="formState"
+    :label-col="{ style: { width: '80px' } }"
+    :rules="rules"
+  >
     <a-form-item label="用户名" name="username">
       <a-input v-model:value="formState.username"></a-input>
     </a-form-item>

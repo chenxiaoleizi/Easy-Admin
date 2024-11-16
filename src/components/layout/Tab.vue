@@ -5,6 +5,7 @@
       hide-add
       type="editable-card"
       size="small"
+      :tabBarStyle="{ marginBottom: 0 }"
       @tabClick="handleClick"
       @edit="handleEdit"
     >

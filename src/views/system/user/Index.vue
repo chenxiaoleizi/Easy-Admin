@@ -8,6 +8,12 @@
         <a-input v-model:value="queryForm.account" placeholder="请输入账号"></a-input>
       </a-form-item>
     </TableQuery>
+    <TableHeader>
+      <template #left>用户列表</template>
+      <template #right>
+        <a-button type="primary">添加用户</a-button>
+      </template>
+    </TableHeader>
     <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
@@ -17,8 +23,8 @@
         </template>
       </template>
     </a-table>
-    <AddUserModal ref="addUserModalRef"></AddUserModal>
-    <EditUserModal ref="editUserModalRef"></EditUserModal>
+    <Add ref="addRef"></Add>
+    <Edit ref="editRef"></Edit>
   </div>
 </template>
 
@@ -27,8 +33,9 @@ import { reactive, ref } from "vue";
 import { useTablePagination } from "@/composables/index";
 import { getUserList } from "@/api/user";
 import TableQuery from "@/components/table/TableQuery.vue";
-import AddUserModal from "./components/AddUserModal.vue";
-import EditUserModal from "./components/EditUserModal.vue";
+import TableHeader from "@/components/table/TableHeader.vue";
+import Add from "./components/Add.vue";
+import Edit from "./components/Edit.vue";
 
 const columns = [
   {
@@ -93,13 +100,13 @@ function fetchData() {
   });
 }
 
-const addUserModalRef = ref();
-const editUserModalRef = ref();
+const addRef = ref();
+const editRef = ref();
 function handleAdd() {
-  addUserModalRef.value.showModal();
+  addRef.value.showModal();
 }
 function handleEdit(record: any) {
-  editUserModalRef.value.showModal(record);
+  editRef.value.showModal(record);
 }
 
 fetchData();
