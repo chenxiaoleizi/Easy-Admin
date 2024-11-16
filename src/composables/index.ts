@@ -1,4 +1,13 @@
-import { ref, reactive, onMounted, computed, onBeforeUnmount, onUnmounted, nextTick } from "vue";
+import {
+  ref,
+  reactive,
+  onMounted,
+  computed,
+  onBeforeUnmount,
+  onUnmounted,
+  nextTick,
+  onScopeDispose,
+} from "vue";
 import type { Ref, Reactive } from "vue";
 import dayjs from "dayjs";
 // import { cloneDeep, isEqual } from "lodash-es";
@@ -23,6 +32,31 @@ export function useClock(format: string = "YYYY-MM-DD HH:mm:ss") {
   });
 
   return clock;
+}
+
+// 验证码倒计时
+export function useCountdown(seconds: number) {
+  const current = ref();
+  const isCounting = computed(() => current.value > 0);
+  let timer: number;
+
+  function startCountdown() {
+    current.value = seconds;
+    timer = window.setInterval(() => {
+      current.value--;
+      if (current.value <= 0) {
+        clearInterval(timer);
+      }
+    }, 1000);
+  }
+
+  onScopeDispose(() => {
+    if (timer) {
+      clearInterval(timer);
+    }
+  });
+
+  return { startCountdown, isCounting, current };
 }
 
 export function useVModel(props: any, propName: string, emit: any) {
