@@ -24,6 +24,7 @@ import User from "./User.vue";
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  height: var(--header-height);
 }
 .header-left {
   display: flex;

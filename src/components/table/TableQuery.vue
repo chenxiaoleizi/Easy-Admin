@@ -35,7 +35,7 @@ function handleQuery() {
   flex-wrap: wrap;
   align-items: center;
   background: white;
-  padding: 10px 20px 0;
+  padding: 10px 10px 0;
 }
 .easy-table-query :deep(.ant-form-item) {
   margin-bottom: 10px;
