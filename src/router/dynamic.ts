@@ -60,6 +60,25 @@ const dynamicRoutes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: "/",
+    meta: {
+      title: "组合式函数",
+      icon: "home",
+    },
+    component: Layout,
+    children: [
+      {
+        path: "/composable",
+        meta: {
+          title: "组合式函数",
+          icon: "home",
+          hideInBreadcrumb: true, // 用于面包屑过滤
+        },
+        component: () => import("@/views/composable/Index.vue"),
+      },
+    ],
+  },
+  {
     path: "/components",
     meta: {
       title: "组件",

@@ -72,6 +72,12 @@ export function useVModel(props: any, propName: string, emit: any) {
   return value;
 }
 
+/**
+ * table 组件的分页组合式函数
+ * @param handleChange 分页发送变化时你需要执行的函数（请求table数据的函数）
+ * @param options table pagination 配置项
+ * @returns
+ */
 export function useTablePagination(handleChange: () => void, options = {}) {
   const pagination = reactive({
     current: 1,
