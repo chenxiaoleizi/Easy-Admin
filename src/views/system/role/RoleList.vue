@@ -14,14 +14,17 @@
     <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
-          <a-button type="link" @click="handleEdit(record)">编辑</a-button>
-          <a-divider type="vertical" />
-          <a-button type="link" danger>删除</a-button>
+          <a-space>
+            <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
+            <a-button class="px-0" type="link" @click="handleAssign(record)">分配权限</a-button>
+            <a-button class="px-0" type="link" danger>删除</a-button>
+          </a-space>
         </template>
       </template>
     </a-table>
     <Add ref="addRef"></Add>
     <Edit ref="editRef"></Edit>
+    <Assign ref="assignRef"></Assign>
   </div>
 </template>
 
@@ -33,6 +36,7 @@ import TableQuery from "@/components/table/TableQuery.vue";
 import TableHeader from "@/components/table/TableHeader.vue";
 import Add from "./components/Add.vue";
 import Edit from "./components/Edit.vue";
+import Assign from "./components/Assign.vue";
 
 const columns = [
   {
@@ -59,7 +63,7 @@ const columns = [
   {
     title: "操作",
     dataIndex: "operation",
-    key: "operation",
+    width: 200,
   },
 ];
 
@@ -88,11 +92,15 @@ function fetchData() {
 
 const addRef = ref();
 const editRef = ref();
+const assignRef = ref();
 function handleAdd() {
   addRef.value.showModal();
 }
 function handleEdit(record: any) {
   editRef.value.showModal(record);
+}
+function handleAssign(record: any) {
+  assignRef.value.show();
 }
 
 fetchData();
